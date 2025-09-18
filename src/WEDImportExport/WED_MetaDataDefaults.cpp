@@ -22,7 +22,7 @@ bool	fill_in_airport_metadata_defaults(WED_Airport & airport, const string& file
 	std::ifstream t(file_path.c_str());
 #endif
 
-	if(t.bad() == true)
+	if (t.bad())
 	{
 		t.close();
 		return false;
@@ -33,7 +33,7 @@ bool	fill_in_airport_metadata_defaults(WED_Airport & airport, const string& file
 	
 	CSVParser::CSVTable table = CSVParser(',', str).ParseCSV();
 	
-	if (table.GetRows().size() < 1)                         //  See WED-701, file on server had syntax error
+	if (table.GetRows().empty())                         //  See WED-701, file on server had syntax error
         LOG_MSG("E/MDDef while parsing %s !\n", file_path.c_str());  //  DoUserAlert() might be over the top
 
 	t.close();

@@ -129,7 +129,7 @@ void	WED_Buffer::ReadInternal(char* p, unsigned long l)
 		// If we got to the end of the block, go to the next one.
 		if (mReadIterator->size == mReadSubpos)
 		{
-			mReadIterator = mReadIterator->next;;
+			mReadIterator = mReadIterator->next;
 			mReadSubpos = 0;
 		}
 	}

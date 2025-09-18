@@ -116,7 +116,7 @@ static bool matches_filter(WED_Thing * thing ,const  MapFilter_t * filter )
 		{
 			const char * type = parent->GetClass();
 			if( type == WED_Airport::sClass ) type = WED_Group::sClass;
-			if (!(type == i)) { match = false; break; }
+			if (type != i) { match = false; break; }
 			parent = parent->GetParent();
 			if (parent == NULL) { match = false; break; }
 		}

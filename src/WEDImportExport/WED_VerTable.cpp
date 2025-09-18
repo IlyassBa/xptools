@@ -33,11 +33,10 @@ const char * kHeaders[7] = { "Scenery ID", "Parent ID", "User Name", "Status",
 
 string ChooseStatus(const VerInfo_t & info)
 {
-	if(info.isRecommended == true)
-	{
+	if (info.isRecommended)
 		return "Recommended";
-	}
-	else return info.status;
+	else
+        return info.status;
 }
 
 string ChooseDate(const VerInfo_t & info)

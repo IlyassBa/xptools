@@ -49,7 +49,7 @@ void	WED_LibraryFilterBar::GetCellContent(
 	* Lable | Enum Dictionary (Build from PackageManager)	0
 	*/
 	//Cell 0,0 and 1,0
-	if(cell_y == 1 || GUI_FilterBar::GetHaveEnumDict() == false)
+	if (cell_y == 1 || !GUI_FilterBar::GetHaveEnumDict())
 	{
 		//if(cell_x == 0)
 		//	the_content.text_val = mLabel;
@@ -58,15 +58,15 @@ void	WED_LibraryFilterBar::GetCellContent(
 		//the_content.string_is_resource=0;
 	}
 
-	if(cell_y == 0 && GUI_FilterBar::GetHaveEnumDict() == true)
+	if (cell_y == 0 && GUI_FilterBar::GetHaveEnumDict())
 	{
 		//Label
-		if(cell_x == 0)
+		if (cell_x == 0)
 		{
 			the_content.text_val = "Filter Libraries:";
 		}
 		//Enum
-		if(cell_x == 1)
+		if (cell_x == 1)
 		{
 			the_content.content_type=gui_Cell_Enum;
 			the_content.int_val = GetEnumValue();

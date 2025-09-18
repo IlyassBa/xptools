@@ -297,6 +297,8 @@ void		GUI_TextTable::CellDraw	 (int cell_bounds[4], int cell_x, int cell_y, GUI_
 	case gui_Cell_CheckBox:
 		c.text_val = "";
 		break;
+    default:
+        break;
 	}
 
 	if(c.can_delete)
@@ -469,6 +471,8 @@ void		GUI_TextTable::CellDraw	 (int cell_bounds[4], int cell_x, int cell_y, GUI_
 		glEnd();
 		glLineWidth(1);
 		break;
+    default:
+        break;
 	}
 	glColor4fv(mColorGridlines);
 	//-----------------------------------------------------------------
@@ -583,7 +587,7 @@ int			GUI_TextTable::CellMouseDown(int cell_bounds[4], int cell_x, int cell_y, i
 
 //	if (mouse_x < cell_bounds[0])	{ mEditInfo.content_type = gui_Cell_None; return 1; }
 
-	if (mEditInfo.can_delete == true)
+	if (mEditInfo.can_delete)
 	{
 		mTrackLeft = cell_bounds[0];
 		mTrackRight = cell_bounds[0] + GUI_GetImageResourceWidth("delete.png");
@@ -782,6 +786,8 @@ int			GUI_TextTable::CellMouseDown(int cell_bounds[4], int cell_x, int cell_y, i
 			mEditInfo.content_type = gui_Cell_None;
 		}
 		break;
+    default:
+        break;
 	}
 	return 1;
 }
@@ -1300,12 +1306,14 @@ int			GUI_TextTable::TerminateEdit(bool inSave, bool in_all, bool in_close)
 				e->GetData(mEditInfo);
 
 			switch(mEditInfo.content_type) {
-			case gui_Cell_Integer:
-				mEditInfo.int_val = atoi(mEditInfo.text_val.c_str());
-				break;
-			case gui_Cell_Double:
-				mEditInfo.double_val = atof(mEditInfo.text_val.c_str());
-				break;
+                case gui_Cell_Integer:
+                    mEditInfo.int_val = atoi(mEditInfo.text_val.c_str());
+                    break;
+                case gui_Cell_Double:
+                    mEditInfo.double_val = atof(mEditInfo.text_val.c_str());
+                    break;
+                default:
+                    break;
 			}
 			mContent->AcceptEdit(mClickCellX, mClickCellY, mEditInfo, in_all);
 		}

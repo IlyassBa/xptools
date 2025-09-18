@@ -74,7 +74,7 @@ int			GUI_FilterBar::GetColCount(void)
 
 int			GUI_FilterBar::GetRowCount(void)
 {
-	if(mHaveEnumDict == false)
+	if (!mHaveEnumDict)
 	{
 		return 1;
 	}
@@ -95,7 +95,7 @@ void	GUI_FilterBar::GetCellContent(
 	* Lable | Enum Dictionary	0
 	*/
 	//Cell 0,0 and 1,0
-	if(cell_y == 1 || mHaveEnumDict == false)
+	if (cell_y == 1 || !mHaveEnumDict)
 	{
 		the_content.content_type=gui_Cell_EditText;
 		the_content.can_delete = false;
@@ -108,14 +108,14 @@ void	GUI_FilterBar::GetCellContent(
 		the_content.is_selected=0;
 		the_content.indent_level=0;
 
-		if(cell_x == 0)
+		if (cell_x == 0)
 			the_content.text_val = mLabel;
 		else
 			the_content.text_val = mText;
 		the_content.string_is_resource=0;
 	}
 
-	if(cell_y == 0 && mHaveEnumDict == true)
+	if (cell_y == 0 && mHaveEnumDict)
 	{
 		//Label
 		if(cell_x == 0)
@@ -173,16 +173,16 @@ void	GUI_FilterBar::AcceptEdit(
 	* Lable | Text Field		1
 	* Lable | Enum Dictionary	0
 	*/
-	if(cell_x == 1 && cell_y == 0 && mHaveEnumDict)
+	if (cell_x == 1 && cell_y == 0 && mHaveEnumDict)
 	{
 		mCurEnumVal = the_content.int_val;
 		mCurEnumTxt = the_content.text_val;
 
 		BroadcastMessage(mMsg, mParam);
 	}
-	if((cell_x == 1 && cell_y == 1) || mHaveEnumDict == false)
+	if ((cell_x == 1 && cell_y == 1) || !mHaveEnumDict)
 	{
-		if(mText != the_content.text_val)
+		if (mText != the_content.text_val)
 		{
 			mText = the_content.text_val;
 			BroadcastMessage(mMsg, mParam);

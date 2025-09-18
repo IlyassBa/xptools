@@ -79,7 +79,7 @@ int zip_printf(void * fi, const char * fmt, ...)
 	va_list args;
 	va_start(args, fmt);
 	char tmp[4000];
-	int l = vsprintf(tmp,fmt,args);
+	int l = vsnprintf(tmp, sizeof(tmp), fmt, args);
 	va_end(args);
 
 	zipWriteInFileInZip((zipFile) fi, tmp, l);
@@ -596,15 +596,15 @@ struct	DSF_ResourceTable {
 		for(int i = 1; i <= 6; ++i)
 		{
 			char buf[20];
-			if(show_level_obj[i] != -1)
+			if (show_level_obj[i] != -1)
 			{
-				sprintf(buf,"%d/%d",i,show_level_obj[i]);
+				snprintf(buf, sizeof(buf), "%d/%d", i, show_level_obj[i]);
 				cbs.AcceptProperty_f("sim/require_agpoint", buf, writer);
 				cbs.AcceptProperty_f("sim/require_object", buf, writer);
 			}
-			if(show_level_pol[i] != -1)
+			if (show_level_pol[i] != -1)
 			{
-				sprintf(buf,"%d/%d",i,show_level_pol[i]);
+				snprintf(buf, sizeof(buf), "%d/%d", i, show_level_pol[i]);
 				cbs.AcceptProperty_f("sim/require_facade", buf, writer);
 			}
 		}
@@ -1535,12 +1535,12 @@ static int	DSF_ExportTileRecursive(
 			if(minp.x_ > maxp.x_)	swap(minp.x_, maxp.x_);
 			if(minp.y_ > maxp.y_)	swap(minp.y_, maxp.y_);
 
-			for(auto xt : xtypes)
+			for (auto xt : xtypes)
 			{
-				if(auto pname = get_exclusion_text(xt))
+				if (auto pname = get_exclusion_text(xt))
 				{
 					char valbuf[64];
-					sprintf(valbuf,"%.6lf/%.6lf/%.6lf/%.6lf",minp.x(),minp.y(),maxp.x(),maxp.y());
+					snprintf(valbuf, sizeof(valbuf), "%.6lf/%.6lf/%.6lf/%.6lf", minp.x(), minp.y(), maxp.x(), maxp.y());
 					++real_thingies;
 					io_table.accum_exclusion(pname, valbuf);
 				}
@@ -1561,7 +1561,7 @@ static int	DSF_ExportTileRecursive(
 				if (auto pname = get_exclusion_text(xt))
 				{
 					char valbuf[64];
-					sprintf(valbuf, "%.6lf/%.6lf/%.6lf/%.6lf;", bounds.p1.x(), bounds.p1.y(), bounds.p2.x(), bounds.p2.y());
+					snprintf(valbuf, sizeof(valbuf), "%.6lf/%.6lf/%.6lf/%.6lf;", bounds.p1.x(), bounds.p1.y(), bounds.p2.x(), bounds.p2.y());
 					++real_thingies;
 					string excbuf(valbuf);
 
@@ -1578,7 +1578,7 @@ static int	DSF_ExportTileRecursive(
 						for (const auto& pol : pol_vec)
 							for (const auto& pt : pol)
 							{
-								sprintf(valbuf, "%.6lf/%.6lf,", pt.x(), pt.y());
+								snprintf(valbuf, sizeof(valbuf), "%.6lf/%.6lf,", pt.x(), pt.y());
 								excbuf += valbuf;
 							}
 
@@ -2153,10 +2153,10 @@ int DSF_ExportTile(WED_Thing * base, IResolver * resolver, const string& pkg, in
 	writer = DSFCreateWriter(x,y,x+1,y+1, msl_min,msl_max,DSF_DIVISIONS);
 	DSFGetWriterCallbacks(&cbs);
 
-	sprintf(buffer, "%d", (int) x  );		cbs.AcceptProperty_f("sim/west", buffer, writer);
-	sprintf(buffer, "%d", (int) x+1);		cbs.AcceptProperty_f("sim/east", buffer, writer);
-	sprintf(buffer, "%d", (int) y+1);		cbs.AcceptProperty_f("sim/north", buffer, writer);
-	sprintf(buffer, "%d", (int) y  );		cbs.AcceptProperty_f("sim/south", buffer, writer);
+	snprintf(buffer, sizeof(buffer), "%d", (int) x); cbs.AcceptProperty_f("sim/west", buffer, writer);
+	snprintf(buffer, sizeof(buffer),"%d", (int) x+1); cbs.AcceptProperty_f("sim/east", buffer, writer);
+	snprintf(buffer, sizeof(buffer),"%d", (int) y+1); cbs.AcceptProperty_f("sim/north", buffer, writer);
+	snprintf(buffer, sizeof(buffer),"%d", (int) y);	cbs.AcceptProperty_f("sim/south", buffer, writer);
 	cbs.AcceptProperty_f("sim/planet", "earth", writer);
 	cbs.AcceptProperty_f("sim/creation_agent", "WorldEditor" WED_VERSION_STRING, writer);
 	cbs.AcceptProperty_f("laminar/internal_revision", "0", writer);

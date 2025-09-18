@@ -660,7 +660,7 @@ bool	XObj8Read(const char * inFile, XObj8& outObj)
 		// ATTR_manip_drag_axis_pix <cursor> <dx_pix> <step> <exp> <v1> <v2> <dataref> <tooltip>
 		else if (MFS_string_match(&s, "ATTR_manip_drag_axis_pix", false))
 		{
-			cmd.cmd = attr_Manip_Drag_Axis_Pix;;
+			cmd.cmd = attr_Manip_Drag_Axis_Pix;
 			cmd.idx_offset = outObj.manips.size();
 			outObj.lods.back().cmds.push_back(cmd);
 			XObjManip8 manip;

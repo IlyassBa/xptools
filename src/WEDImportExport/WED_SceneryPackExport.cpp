@@ -66,15 +66,14 @@ static string escape(const string& str)
 		case '<':	result += "&lt;";	break;
 		case '>':	result += "&gt;";	break;
 		case '&':	result += "&amp;";	break;
-//		case '\'':	result += "&apos;";	break;        // not needed as all params are either XML text context or inside double quotes
 		case '"':	result += "&quot;";	break;        // if switching to single quotes for parameters - double quotes could be passed through verbatim
 		default:
-			if (*b & 0xC0 == 0xC0) // UTF-8 multi-byte - copy verbatim
+			if ((*b & 0xC0) == 0xC0) // UTF-8 multi-byte - copy verbatim
 			{
 				result += *b++;
-				if (*b & 0xC0 == 0x80) // UTF-8 3-byte
+				if ((*b & 0xC0) == 0x80) // UTF-8 3-byte
 					result += *b++;
-				if (*b & 0xC0 == 0x80) // UTF-8 4-byte
+				if ((*b & 0xC0) == 0x80) // UTF-8 4-byte
 					result += *b++;
 				result += *b;
 			}

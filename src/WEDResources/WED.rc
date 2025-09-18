@@ -1,5 +1,5 @@
 /* exe icon. For reasons that are entirely unclear to me, this has to be called 1.ico or resource compiler will complain it can't find 1.ico */
-100  			ICON		1.ico
+100  			ICON		WED.ico
 
 /* core UI resources */
 sans.ttf			GUI_RES		sans.ttf
@@ -167,7 +167,7 @@ BEGIN
 			VALUE "FileDescription",	"X-Plane Scenery Editor"
 			VALUE "FileVersion",		WED_VERSION_RES
 			VALUE "ProductVersion",		WED_VERSION_RES
-			VALUE "LegalCopyright",		"Copyright 2009, Laminar Research"
+			VALUE "LegalCopyright",		"Copyright (c) 2009-2025, Laminar Research"
 			VALUE "ProductName",		"WED"
 		END
 	END

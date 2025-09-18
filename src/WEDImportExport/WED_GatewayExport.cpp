@@ -557,7 +557,7 @@ void WED_GatewayExportDialog::Submit()
 			fprintf(readme,"-------------------------------------------------------------------------------\n\n");
 			fprintf(readme,"This scenery pack was downloaded from the X-Plane Scenery Gateway: \n");
 			fprintf(readme,"\n");
-			fprintf(readme,"    http://gateway.x-plane.com/\n");
+			fprintf(readme,"    https://gateway.x-plane.com/\n");
 			fprintf(readme,"\n");
 			fprintf(readme,"Airport: %s (%s)\n\nUploaded by: %s.\n", apt_name.c_str(), icao.c_str(), uname.c_str());
 			fprintf(readme,"\n");

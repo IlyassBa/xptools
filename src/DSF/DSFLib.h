@@ -251,7 +251,7 @@ int		DSFCheckSignature(const char * inPath);
  *
  */
 
-void *	DSFCreateWriter(double inWest, double inSouth, double inNorth, double inEast, double inElevMin, double inElevMax, int divisions);
+void *	DSFCreateWriter(double inWest, double inSouth, double inEast, double inNorth, double inElevMin, double inElevMax, int divisions);
 void	DSFGetWriterCallbacks(DSFCallbacks_t * ioCallbacks);
 void	DSFWriteToFile(const char * inPath, void * inRef);
 void	DSFDestroyWriter(void * inRef);

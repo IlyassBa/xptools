@@ -489,14 +489,12 @@ void WED_GatewayImportDialog::Next()
 			DoUserAlert("Pick an airport to import.");
 		}
 		break;
-	//case imp_dialog_download_versions:
-		//break; no next button here
 	case imp_dialog_choose_versions:
 		mVersions_VerProvider.GetSelection(mVersions_VersionsSelected);
 
 		//Were we able to in the first place?
 		bool able_to_start = NextVersionsDownload();
-		if(able_to_start == false)
+		if (!able_to_start)
 		{
 			//This one stays as a user alert because we don't want to leave this window yet.
 			DoUserAlert("You must select at least one item in the list");
@@ -504,8 +502,6 @@ void WED_GatewayImportDialog::Next()
 		}
 		mPhase = imp_dialog_download_specific_version;
 		break;
-	//case imp_dialog_download_specific_version:
-		//break; no button here
 	}
 	DecorateGUIWindow();
 }
@@ -550,15 +546,15 @@ void WED_GatewayImportDialog::TimerFired()
 		if(res.out_status != cache_status_available)
 		{
 			char p[30] = "";
-			if(mPhase > imp_dialog_download_specific_version)
-				sprintf(p," Plus %2d more files to go.",(int) mVersions_VersionsSelected.size());
+			if (mPhase > imp_dialog_download_specific_version)
+				snprintf(p, sizeof(p), " Plus %2d more files to go.", (int) mVersions_VersionsSelected.size());
 
 			int progress = res.out_download_progress;
 			char c[100];
-			if(progress < 0)
-				sprintf(c,"Download in Progress: %4dkB received. %s",-progress,p);
+			if (progress < 0)
+				snprintf(c, sizeof(c), "Download in Progress: %4dkB received. %s", -progress, p);
 			else
-				sprintf(c,"Download in Progress: %2d%% done. %s",progress,p);
+				snprintf(c, sizeof(c), "Download in Progress: %2d%% done. %s", progress, p);
 			DecorateGUIWindow(c);
 		}
 	}
@@ -603,7 +599,7 @@ void WED_GatewayImportDialog::TimerFired()
 					bool has_versions_left = NextVersionsDownload();
 
 					//We're all done with everything!
-					if(has_versions_left == false)
+					if (!has_versions_left)
 					{
 						WED_Thing * wrl = WED_GetWorld(mResolver);
 						wrl->StartOperation("Import Scenery Pack");

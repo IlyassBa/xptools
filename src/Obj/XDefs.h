@@ -71,8 +71,8 @@
 // mroe : -- really early stage of dev , do not change.
 #define WITHNWLINK 0
 
-// These turn on the features to import the global apt databaes for the purpose of building a final scenery pack
-// from the gateway.  You don't need this. Be aware that temp files after gateway import will NOT be removed if activated.
+// These turn on the features to import the global apt databases for the purpose of building a final scenery pack
+// from the gateway. You don't need this. Be aware that temp files after gateway import will NOT be removed if activated.
 #define GATEWAY_IMPORT_FEATURES 1
 
 // no validation upon export, but special heuristics for agp expansion before export. Also seyt GATEWAY_IMPORT_FEATURES to
@@ -123,10 +123,6 @@
 
 // Causes DSFLib to output stats about encoding quality.
 #define DSF_WRITE_STATS 0
-
-// Set this to 1 to crank up the mesh to ludicrous speed...
-#define HD_MESH 0
-#define UHD_MESH 0
 
 #if WANT_NED_MALLOC
 	#include "MemUtils.h"
@@ -332,6 +328,5 @@
 #define POINT2				Point2
 #define SEGMENT2			Segment2
 #define VECTOR2				Vector2
-#define CGAL_midpoint(a,b)	Segment2(a,b).midpoint()
 
 #endif

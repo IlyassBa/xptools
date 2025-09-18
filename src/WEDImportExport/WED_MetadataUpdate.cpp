@@ -218,7 +218,7 @@ void WED_UpdateMetadataDialog::Submit()
 		mApt->StartOperation((string("Update " + icao + "'s Metadata").c_str()));
 		mApt->StateChanged();
 		bool success = fill_in_airport_metadata_defaults(*mApt, mAirportMetadataCSVPath);
-		if(success == false)
+		if (!success)
 		{
 			const char * msg = "Could not find metadata, check Airport ID or if airport is supported.\n";
 			LOG_MSG("I/MDU Updating metadata for %s: %s\n", icao.c_str(), msg);
@@ -228,7 +228,7 @@ void WED_UpdateMetadataDialog::Submit()
 		}
 		else
 		{
-			LOG_MSG("I/MDU Metadata update for %s sucessfull.\n", icao.c_str());
+			LOG_MSG("I/MDU Metadata update for %s successful.\n", icao.c_str());
 			mApt->CommitCommand();
 
 			this->Reset("","OK","",true);

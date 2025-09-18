@@ -1083,7 +1083,6 @@ int main(int argc, const char * argv[])
 	 **************************************************************************************************************
 
 	 Now we can finally output all nodes and ways, in a once-over copy pass. */
-
 	if(CHECK_WAY_ID >= 0 && CHECK_WAY_ID <= highest_w)
 		printf("way %d: 0x%08X\n", CHECK_WAY_ID, g_ways[CHECK_WAY_ID]);
 	if(CHECK_NODE_ID >= 0 && CHECK_NODE_ID <= highest_n)

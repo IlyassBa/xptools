@@ -170,7 +170,7 @@ char *	GetMultiFilePathFromUser(
 void	DoUserAlert(const char * inMsg)
 {
 	LOG_MSG("I/Alert %s\n",inMsg);
-	NSAlert *alert = [[NSAlert alloc] init];;
+	NSAlert *alert = [[NSAlert alloc] init];
 	[alert setMessageText:[NSString stringWithUTF8String:inMsg]];
 	[alert runModal];
 	[alert release];
@@ -178,7 +178,7 @@ void	DoUserAlert(const char * inMsg)
 
 int		ConfirmMessage(const char* inMsg, const char* proceedBtn, const char* cancelBtn, const char* optionBtn)
 {
-	NSAlert *alert = [[NSAlert alloc] init];;
+	NSAlert *alert = [[NSAlert alloc] init];
 	[alert setMessageText:[NSString stringWithUTF8String:inMsg]];
 	[alert addButtonWithTitle:[NSString stringWithUTF8String:proceedBtn]];
 	if (optionBtn)
@@ -196,7 +196,7 @@ int		ConfirmMessage(const char* inMsg, const char* proceedBtn, const char* cance
 
 int DoSaveDiscardDialog(const char * inMessage1, const char * inMessage2)
 {
-	NSAlert *alert = [[NSAlert alloc] init];;
+	NSAlert *alert = [[NSAlert alloc] init];
 	[alert setMessageText:[NSString stringWithUTF8String:inMessage1]];
 	[alert setInformativeText:[NSString stringWithUTF8String:inMessage2]];
 	[alert addButtonWithTitle:[NSString stringWithUTF8String:"Save"]];

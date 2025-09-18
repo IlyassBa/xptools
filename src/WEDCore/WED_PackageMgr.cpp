@@ -262,7 +262,8 @@ int WED_PackageMgr::CreateNewCustomPackage(void)
 	char buf[256];
 	do {
 		++n;
-		sprintf(buf,"Untitled %d",n);
+        snprintf(buf, sizeof (buf), "Untitled %d", n);
+		// sprintf(buf,"Untitled %d",n); TODO: deprecated remove
 		name = buf;
 		path = system_path + DIR_STR CUSTOM_PACKAGE_PATH DIR_STR + name;
 
