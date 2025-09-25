@@ -45,10 +45,7 @@ public:
 
 	virtual	int		MouseMove(int x, int y			  );
 	virtual	void	Draw(GUI_GraphState * state);
-	virtual	void	ReceiveMessage(
-							GUI_Broadcaster *		inSrc,
-							intptr_t				inMsg,
-							intptr_t				inParam);
+	virtual	void	ReceiveMessage(GUI_Broadcaster * inSrc, intptr_t inMsg, intptr_t inParam);
 
 	virtual	int				HandleKeyPress(uint32_t inKey, int inVK, GUI_KeyFlags inFlags)	 	;
 	virtual	int				HandleCommand(int command) 									;
@@ -57,8 +54,9 @@ public:
 	virtual void			Activate(int inActive);
 
 private:
+    void RecomputeButtonEnables();
 
-			void			RecomputeButtonEnables();
+    static constexpr int cDefaultBounds[4] = { 0, 0, 700, 500 };
 
 	string				mCaption;
 
@@ -68,9 +66,9 @@ private:
 	GUI_ScrollerPane *	mScroller;
 
 	GUI_Table *			mTable;
-	GUI_TextTable *					mTextTable;
+	GUI_TextTable *		mTextTable;
 
-	WED_PackageListAdapter *		mPackageList;
+	WED_PackageListAdapter * mPackageList;
 };
 
 #endif /* WED_StartWindow_H */
